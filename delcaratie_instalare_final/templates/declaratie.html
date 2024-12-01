@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declarație de Instalare</title>
+    <link rel="stylesheet" href="/static/declaratie.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.0/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.25.0/docxtemplater.js"></script>
+    <style>
+        /* Ascunde butoanele la imprimare */
+        @media print {
+            #salveaza_pdf, #imprima, button[type='button'] {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4">
+        <h1>DECLARAȚIE DE INSTALARE</h1>
+        <p class="subtitle">a aparatelor electronice de marcat fiscale</p>
+
+            <p class="fiscal_info">
+                Organul fiscal teritorial<br>
+                .................................................................<br>
+                Numărul și data înregistrării declarației<br>
+                .................................................................<br>
+            </p>
+
+        <form id="formDeclaratie" method="POST">
+            <p>
+                Subsemnatul
+                <input type="text" name="nume" style="width: 200px;" required>, posesor al buletinului (cărții) de identitate seria:
+                <input type="text" name="seria_buletin" style="width: 30px;" required> nr.
+                <input type="text" name="numar_buletin" style="width: 50px;" required>, eliberat de
+                <input type="text" name="eliberat_de" style="width: 150px;"required required> la data de
+                <input type="date" name="data_eliberarii" style="width: 95px;" required>, în calitate de reprezentant la
+                <input type="text" name="reprezentant_la" style="width: 200px;" required>, cu sediul în:
+                <input type="text" name="sediu" style="width: 350px;"required>, declar că am instalat la data de
+                <input type="date" name="data_instalarii" style="width: 95px;" required>, la punctul de lucru din
+                <input type="text" name="adresa" style="width: 400px;" required>, un număr de
+                <input type="number" name="numar_amef" required> aparat/aparate de marcat electronic fiscal, având elementele de identificare:
+            </p>
+            <p>
+                Serie AMEF: <input type="text" name="serie_amef" required><br>
+                Model: <input type="text" name="model_amef" required><br>
+                Serie fiscală: <input type="text" name="serie_fiscala" required>
+            </p>
+            <p>
+                Data achiziționării aparatului: <input type="date" name="data_achizitionarii" required>
+            </p>
+            <p>
+                Numărul / data avizului Comisiei de avizare a distribuției și utilizării aparatelor de marcat electronice fiscale:
+                <input type="text" name="numar_aviz" required>.
+            </p>
+            <p>
+                Sigilarea imprimantei s-a efectuat cu sigiliul
+                <input type="text" name="sigiliu" style="width: 50px;"required>, aplicat pe memoria fiscală a imprimantei cât și pe carcasa acesteia.
+            </p>
+            <p>
+                Instalarea a fost efectuată de tehnicianul:
+                <input type="text" name="tehnician" style="width: 200px;" required>, având legitimația nr.
+                <input type="text" name="legitimatie" style="width: 40px;"required> cu numărul de identificare
+                <input type="text" name="sigiliu" style="width: 50px;"required> de la unitatea service SC SECRET DATA SRL, SATU MARE, strada AVRAM IANCU nr. 17, cod fiscal: RO 9740584 telefon: 0261-768.038
+            </p>
+
+            <div class="semnaturi_container">
+                <div class="semnatura_beneficiar">
+                    Societatea comercială<br>
+                    Semnătura<br>
+                    .........................................<br>
+                </div>
+                <div class="semnatura_tehnician">
+                    Unitatea de service<br>
+                    Semnătura<br>
+                    ........................................<br>
+                </div>
+            </div>
+
+            <button type="button" id="salveaza_pdf">Salvează PDF</button>
+            <button type="button" id="imprima">Imprimă</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ascunde butoanele pentru PDF la imprimare
+            var salveazaPdfButton = document.getElementById("salveaza_pdf");
+            var imprimaButton = document.getElementById("imprima");
+
+            function hideButtons() {
+                salveazaPdfButton.style.display = 'none';
+                imprimaButton.style.display = 'none';
+            }
+
+            function showButtons() {
+                salveazaPdfButton.style.display = 'inline-block';
+                imprimaButton.style.display = 'inline-block';
+            }
+
+            salveazaPdfButton.addEventListener("click", function () {
+                hideButtons();
+                const element = document.querySelector(".a4");
+                const opt = {
+                    margin: [0, 0, 0, 0],
+                    filename: 'declaratie_instalare.pdf',
+                    image: { type: 'jpeg', quality: 1 },
+                    html2canvas: { scale: 4 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf().from(element).set(opt).save().then(function () {
+                    showButtons();
+                });
+            });
+
+            imprimaButton.addEventListener("click", function () {
+                hideButtons();
+                window.print(); // Deschide fereastra de imprimare
+                setTimeout(function () {
+                    showButtons();
+                }, 1000); // Reîntoarce butoanele după un scurt delay
+            });
+        });
+    </script>
+
+    <script>
+    window.addEventListener("beforeunload", function () {
+        navigator.sendBeacon("/shutdown");
+    });
+    </script>
+
+</body>
+</html>

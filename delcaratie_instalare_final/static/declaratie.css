@@ -1,0 +1,177 @@
+/* Stiluri generale */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.a4 {
+    width: 210mm; /* Dimensiune A4 */
+    height: 297mm;
+    padding: 10mm;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Stiluri pentru tipărire (printare) */
+
+@page {
+    margin: 0; /* Elimină marginea implicită care include anteturile și subsolurile */
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    .a4 {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 10mm; /* Ajustăm paddingul pentru a evita să fie tăiată zona de conținut */
+        page-break-after: avoid; /* Prevenim adăugarea unei pagini goale */
+        page-break-before: avoid; /* Prevenim adăugarea unei pagini goale */
+    }
+
+    /* Asigurăm că textul și elementele de pe pagină nu depășesc dimensiunea A4 */
+    h1, .subtitle, .fiscal_info, .semnaturi_container, form p, button {
+        page-break-inside: avoid;
+    }
+
+    /* Eliminăm butoanele și secțiunile care nu sunt necesare la imprimare */
+    button, .result {
+        display: none;
+    }
+}
+
+/* Stiluri pentru restul paginii */
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+form p {
+    margin: 10px 0;
+}
+
+input[type="text"], textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+input[type="date"], textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 14%;
+    margin-bottom: 10px;
+}
+
+input[type="number"], textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    width: 5%;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-weight: normal;
+}
+
+.fiscal_info {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-weight: normal;
+}
+
+.semnaturi_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+
+.semnatura_beneficiar {
+    text-align: left;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.semnatura_tehnician {
+    text-align: left;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+/* Stiluri pentru butoane */
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Stiluri pentru butoanele de salvare */
+#salveaza_pdf, {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745; /* Culoare verde pentru salvarea documentului */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#salveaza_word:hover, #salveaza_pdf:hover {
+    background-color: #218838; /* Culoare verde închis la hover */
+}
