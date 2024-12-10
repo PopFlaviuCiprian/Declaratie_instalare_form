@@ -25,10 +25,8 @@
         <p class="subtitle">a aparatelor electronice de marcat fiscale</p>
 
             <p class="fiscal_info">
-                Organul fiscal teritorial<br>
-                .................................................................<br>
-                Numărul și data înregistrării declarației<br>
-                .................................................................<br>
+                Organul fiscal teritorial<br>.....................................<br>
+                Numărul și data înregistrării declarației<br>..............................................................<br>
             </p>
 
         <form id="formDeclaratie" method="POST">
@@ -57,13 +55,13 @@
             </p>
             <p>
                 Sigilarea imprimantei s-a efectuat cu sigiliul
-                <input type="text" name="sigiliu" style="width: 50px;"required>, aplicat pe memoria fiscală a imprimantei cât și pe carcasa acesteia.
+                <input type="text" name="sigiliu" style="width: 50px;" required>, aplicat pe memoria fiscală a imprimantei cât și pe carcasa acesteia.
             </p>
             <p>
                 Instalarea a fost efectuată de tehnicianul:
                 <input type="text" name="tehnician" style="width: 200px;" required>, având legitimația nr.
-                <input type="text" name="legitimatie" style="width: 40px;"required> cu numărul de identificare
-                <input type="text" name="sigiliu" style="width: 50px;"required> de la unitatea service SC SECRET DATA SRL, SATU MARE, strada AVRAM IANCU nr. 17, cod fiscal: RO 9740584 telefon: 0261-768.038
+                <input type="text" name="legitimatie" style="width: 40px;" required> cu numărul de identificare
+                <input type="text" name="sigiliu" style="width: 50px;" required> de la unitatea service SC SECRET DATA SRL, SATU MARE, strada AVRAM IANCU nr. 17, cod fiscal: RO9740584 telefon: 0261-768.038
             </p>
             <p style="color: red; text-align: justify;">
                 Fiscalizarea s-a facut conform ART.4 din OUG 28/1999 cu modificarile si completarile  ulterioare.
@@ -76,20 +74,19 @@
             <div class="semnaturi_container">
                 <div class="semnatura_beneficiar">
                     Societatea comercială<br>
-                    Semnătura<br>
-                    .........................................<br>
+                    Semnătura<br>.........................................<br>
                 </div>
                 <div class="semnatura_tehnician">
                     Unitatea de service<br>
-                    Semnătura<br>
-                    ........................................<br>
+                    Semnătura<br>........................................<br>
                 </div>
             </div>
-
-            <button type="button" id="salveaza_pdf">Salvează PDF</button>
-            <button type="button" id="imprima">Imprimă</button>
         </form>
     </div>
+<div class="container_butoane">
+    <button type="button" id="salveaza_pdf">Salvează PDF</button>
+    <button type="button" id="imprima">Imprimă</button>
+</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

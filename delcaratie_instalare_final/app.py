@@ -29,5 +29,4 @@ if __name__ == "__main__":
     Timer(1, open_browser).start()
     app.run(debug=False) # se pune True cand rulezi in python iar false ca executabil
 
-
-# ultima versiune buna, testata cu salvare pdf si imprimare
+# ultima versiune buna, testata cu salvare pdf si imprimare si am eliminat paginile goale la salvare si imprimare
